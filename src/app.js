@@ -18,21 +18,23 @@ let isSecondToneEnabled = () => {
 }
 
 let changeFrequency = (e) => {
+    let x = e.offsetX || e.changedTouches[0].clientX;
+    let y = e.offsetY || e.changedTouches[0].clientY;
     if (!tone1.isPlaying) {
         tone1.start();
         tone1.type = padType.value;
-        tone1.setFrequencyForValue(e.offsetX);
+        tone1.setFrequencyForValue(x);
 
         if (isSecondToneEnabled()) {
             tone2.start();
             tone2.type = padType.value;
-            tone2.setFrequencyForValue(e.offsetY);
+            tone2.setFrequencyForValue(y);
         }
     } else {
         requestAnimationFrame(function () {
-            tone1.setFrequencyForValue(e.offsetX);
+            tone1.setFrequencyForValue(x);
             if (isSecondToneEnabled()) {
-                tone2.setFrequencyForValue(e.offsetY);
+                tone2.setFrequencyForValue(y);
             }
         });
     }
@@ -50,3 +52,5 @@ let stopTone = () => {
 
 pad.addEventListener('mousemove', changeFrequency);
 pad.addEventListener('mouseleave', stopTone);
+pad.addEventListener('touchmove', changeFrequency);
+pad.addEventListener('touchend', stopTone);
