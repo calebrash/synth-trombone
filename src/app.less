@@ -1,0 +1,86 @@
+@padWidth: 60%;
+@padHeight: 300px;
+
+@blue: #a4dee1;
+@red: #c9a18e;
+@gray: #ddd;
+@white: #fff;
+
+body {
+    margin: 0;
+    font-size: 11px;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+header {
+    float: left;
+    width: 100%;
+    padding: 12px 30px;
+    border-bottom: 1px solid @gray;
+    font-size: 1.0em;
+    box-sizing: border-box;
+}
+
+h1 {
+    display: inline-block;
+    margin: 0 20px 0 0;
+    font-size: 1.0em;
+}
+
+fieldset {
+    display: inline;
+    padding: 0;
+    margin: 0 20px 0 0;
+    border: 0;
+}
+
+select {
+    border: 1px solid @gray;
+    font-size: 1.0em;
+    background: @white;
+}
+
+cite {
+    float: right;
+    margin-top: 2px;
+    font-style: normal;
+}
+
+a {
+    color: @red;
+    text-decoration: none;
+    transition: color 100ms linear;
+    &:hover {
+        color: desaturate(darken(@blue, 10%), 10%);
+    }
+}
+
+.soundpad {
+    position: absolute;
+    top: 50%;
+    left: (100% - @padWidth) / 2;
+    width: @padWidth;
+    height: @padHeight;
+    margin-top: (@padHeight / -2) + 20px;
+    background: linear-gradient(45deg, @blue, @red);
+}
+
+@media screen and (max-width: 622px) {
+    header {
+        line-height: 2.0em;
+    }
+    h1 {
+        width: 100%;
+    }
+    cite {
+        display: none;
+    }
+    .soundpad {
+        position: relative;
+        float: left;
+        clear: left;
+        left: 10%;
+        width: 80%;
+        margin-top: 14px;
+    }
+}
