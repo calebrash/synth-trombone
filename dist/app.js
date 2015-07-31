@@ -53,8 +53,6 @@ var stopTone = function stopTone() {
 
 pad.addEventListener('mousemove', changeFrequency);
 pad.addEventListener('mouseleave', stopTone);
-pad.addEventListener('touchmove', changeFrequency);
-pad.addEventListener('touchend', stopTone);
 
 },{"./tone.js":2}],2:[function(require,module,exports){
 'use strict';

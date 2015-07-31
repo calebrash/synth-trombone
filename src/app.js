@@ -52,5 +52,3 @@ let stopTone = () => {
 
 pad.addEventListener('mousemove', changeFrequency);
 pad.addEventListener('mouseleave', stopTone);
-pad.addEventListener('touchmove', changeFrequency);
-pad.addEventListener('touchend', stopTone);
