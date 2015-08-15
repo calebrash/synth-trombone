@@ -20,16 +20,16 @@ var isSecondToneEnabled = function isSecondToneEnabled() {
 };
 
 var changeFrequency = function changeFrequency(e) {
-    var x = e.offsetX || e.changedTouches[0].clientX;
-    var y = e.offsetY || e.changedTouches[0].clientY;
+    var x = e.offsetX;
+    var y = e.offsetY;
     if (!tone1.isPlaying) {
-        tone1.start();
         tone1.type = padType.value;
+        tone1.start();
         tone1.setFrequencyForValue(x);
 
         if (isSecondToneEnabled()) {
-            tone2.start();
             tone2.type = padType.value;
+            tone2.start();
             tone2.setFrequencyForValue(y);
         }
     } else {

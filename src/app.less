@@ -2,7 +2,7 @@
 @padHeight: 300px;
 
 @blue: #a4dee1;
-@darkBlue: darken(@blue, 30%);
+@darkBlue: darken(@blue, 35%);
 @red: #c9a18e;
 @gray: #ddd;
 @white: #fff;
@@ -47,6 +47,10 @@ select {
     font-size: 1.0em;
     background: @white;
     color: @darkBlue;
+    outline: none;
+    &:focus {
+        border-color: @darkBlue;
+    }
 }
 
 cite {
@@ -59,7 +63,9 @@ a {
     color: @red;
     text-decoration: none;
     transition: color 100ms linear;
-    &:hover {
+    outline: none;
+    &:hover,
+    &:focus {
         color: desaturate(darken(@blue, 10%), 10%);
     }
 }

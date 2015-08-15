@@ -18,16 +18,16 @@ let isSecondToneEnabled = () => {
 }
 
 let changeFrequency = (e) => {
-    let x = e.offsetX || e.changedTouches[0].clientX;
-    let y = e.offsetY || e.changedTouches[0].clientY;
+    let x = e.offsetX;
+    let y = e.offsetY;
     if (!tone1.isPlaying) {
-        tone1.start();
         tone1.type = padType.value;
+        tone1.start();
         tone1.setFrequencyForValue(x);
 
         if (isSecondToneEnabled()) {
-            tone2.start();
             tone2.type = padType.value;
+            tone2.start();
             tone2.setFrequencyForValue(y);
         }
     } else {
