@@ -45,4 +45,3 @@ class Tone {
 }
 
 export { Tone };
-
