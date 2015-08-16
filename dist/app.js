@@ -15,6 +15,8 @@ var xRange = [0, pad.clientWidth],
 var tone1 = new _toneJs.Tone(xRange, xFrequencyRange),
     tone2 = new _toneJs.Tone(yRange, yFrequencyRange);
 
+var toneActive = false;
+
 var isSecondToneEnabled = function isSecondToneEnabled() {
     return padNumber.value === 'both';
 };
@@ -22,11 +24,11 @@ var isSecondToneEnabled = function isSecondToneEnabled() {
 var changeFrequency = function changeFrequency(e) {
     var x = e.offsetX;
     var y = e.offsetY;
+    toneActive = true;
     if (!tone1.isPlaying) {
         tone1.type = padType.value;
         tone1.start();
         tone1.setFrequencyForValue(x);
-
         if (isSecondToneEnabled()) {
             tone2.type = padType.value;
             tone2.start();
@@ -43,6 +45,7 @@ var changeFrequency = function changeFrequency(e) {
 };
 
 var stopTone = function stopTone() {
+    toneActive = false;
     if (tone1.isPlaying) {
         tone1.stop();
         if (isSecondToneEnabled()) {
@@ -51,8 +54,53 @@ var stopTone = function stopTone() {
     }
 };
 
+var shortcutHandler = function shortcutHandler(e) {
+    console.log(e.keyCode);
+    switch (e.keyCode) {
+        case 49:
+            // 1
+            padType.value = 'sine';
+            break;
+        case 50:
+            // 2
+            padType.value = 'square';
+            break;
+        case 51:
+            // 3
+            padType.value = 'sawtooth';
+            break;
+        case 52:
+            // 4
+            padType.value = 'triangle';
+            break;
+        case 90:
+            padNumber.value = 'one';
+            break;
+        case 88:
+            padNumber.value = 'both';
+            break;
+    }
+    tone1.stop();
+    tone1.type = padType.value;
+    if (toneActive) {
+        tone1.start();
+    } else {
+        tone1.stop();
+    }
+    if (isSecondToneEnabled()) {
+        tone2.stop();
+        tone2.type = padType.value;
+        if (toneActive) {
+            tone2.start();
+        } else {
+            tone2.stop();
+        }
+    }
+};
+
 pad.addEventListener('mousemove', changeFrequency);
 pad.addEventListener('mouseleave', stopTone);
+window.addEventListener('keydown', shortcutHandler);
 
 },{"./tone.js":2}],2:[function(require,module,exports){
 'use strict';
