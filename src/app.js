@@ -15,13 +15,9 @@ let tone1 = new Tone(xRange, xFrequencyRange),
 
 let toneActive = false;
 
-let isSecondToneEnabled = () => {
-    return padNumber.value === 'both';
-}
+let isSecondToneEnabled = () => padNumber.value === 'both';
 
-let setTypeForTone(tone) {
-    tone.type = padType.value;
-};
+let setTypeForTone = (tone) => tone.type = padType.value;
 
 let changeFrequency = (e) => {
     let x = e.offsetX;
@@ -92,6 +88,8 @@ let shortcutHandler = function (e) {
         } else {
             tone2.stop();
         }
+    } else {
+        tone2.stop();
     }
 };
 
