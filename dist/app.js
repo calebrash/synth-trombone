@@ -21,16 +21,20 @@ var isSecondToneEnabled = function isSecondToneEnabled() {
     return padNumber.value === 'both';
 };
 
+var setTypeForTone = function setTypeForTone(tone) {
+    return tone.type = padType.value;
+};
+
 var changeFrequency = function changeFrequency(e) {
     var x = e.offsetX;
     var y = e.offsetY;
     toneActive = true;
     if (!tone1.isPlaying) {
-        tone1.type = padType.value;
+        setTypeForTone(tone1);
         tone1.start();
         tone1.setFrequencyForValue(x);
         if (isSecondToneEnabled()) {
-            tone2.type = padType.value;
+            setTypeForTone(tone2);
             tone2.start();
             tone2.setFrequencyForValue(y);
         }
@@ -55,7 +59,6 @@ var stopTone = function stopTone() {
 };
 
 var shortcutHandler = function shortcutHandler(e) {
-    console.log(e.keyCode);
     switch (e.keyCode) {
         case 49:
             // 1
@@ -74,14 +77,16 @@ var shortcutHandler = function shortcutHandler(e) {
             padType.value = 'triangle';
             break;
         case 90:
+            // z
             padNumber.value = 'one';
             break;
         case 88:
+            // x
             padNumber.value = 'both';
             break;
     }
     tone1.stop();
-    tone1.type = padType.value;
+    setTypeForTone(tone1);
     if (toneActive) {
         tone1.start();
     } else {
@@ -89,12 +94,14 @@ var shortcutHandler = function shortcutHandler(e) {
     }
     if (isSecondToneEnabled()) {
         tone2.stop();
-        tone2.type = padType.value;
+        setTypeForTone(tone2);
         if (toneActive) {
             tone2.start();
         } else {
             tone2.stop();
         }
+    } else {
+        tone2.stop();
     }
 };
 
