@@ -1,7 +1,7 @@
 {
   "name": "synth-trombone",
   "version": "0.0.0",
-  "description": "Synth Trombone is a fun little JavaScript tone generator controlled by your mouse (desktop) or finger (mobile).",
+  "description": "",
   "author": "Caleb Rash",
   "license": "MIT",
   "dependencies": {
